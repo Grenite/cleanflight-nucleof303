@@ -71,6 +71,9 @@ typedef enum {
 #ifdef LED_STRIP
     TASK_LEDSTRIP,
 #endif
+#ifdef TRANSPONDER
+    TASK_TRANSPONDER,
+#endif
 
     /* Count of real tasks */
     TASK_COUNT,
@@ -115,4 +118,6 @@ uint32_t getTaskDeltaTime(cfTaskId_e taskId);
 
 void scheduler(void);
 
-#define isSystemOverloaded() (averageSystemLoadPercent >= 100)
+#define LOAD_PERCENTAGE_ONE 100
+
+#define isSystemOverloaded() (averageSystemLoadPercent >= LOAD_PERCENTAGE_ONE)

@@ -63,6 +63,9 @@
 #include "io/serial_cli.h"
 #include "io/serial_msp.h"
 #include "io/statusindicator.h"
+#include "io/asyncfatfs/asyncfatfs.h"
+#include "io/transponder_ir.h"
+
 
 #include "rx/rx.h"
 #include "rx/msp.h"
@@ -688,6 +691,10 @@ void taskMainPidLoop(void)
         writeMotors();
     }
 
+#ifdef USE_SDCARD
+        afatfs_poll();
+#endif
+
 #ifdef BLACKBOX
     if (!cliMode && feature(FEATURE_BLACKBOX)) {
         handleBlackbox();
@@ -722,10 +729,12 @@ void taskHandleSerial(void)
     handleSerial();
 }
 
+#ifdef BEEPER
 void taskUpdateBeeper(void)
 {
     beeperUpdate();          //call periodic beeper handler
 }
+#endif
 
 void taskUpdateBattery(void)
 {
@@ -864,6 +873,15 @@ void taskLedStrip(void)
 {
     if (feature(FEATURE_LED_STRIP)) {
         updateLedStrip();
+    }
+}
+#endif
+
+#ifdef TRANSPONDER
+void taskTransponder(void)
+{
+    if (feature(FEATURE_TRANSPONDER)) {
+        updateTransponder();
     }
 }
 #endif

@@ -37,6 +37,7 @@ void taskCalculateAltitude(void);
 void taskUpdateDisplay(void);
 void taskTelemetry(void);
 void taskLedStrip(void);
+void taskTransponder(void);
 void taskSystem(void);
 
 cfTask_t cfTasks[TASK_COUNT] = {
@@ -69,12 +70,14 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .staticPriority = TASK_PRIORITY_LOW,
     },
 
+#ifdef BEEPER
     [TASK_BEEPER] = {
         .taskName = "BEEPER",
         .taskFunc = taskUpdateBeeper,
         .desiredPeriod = 1000000 / 100,     // 100 Hz
         .staticPriority = TASK_PRIORITY_MEDIUM,
     },
+#endif
 
     [TASK_BATTERY] = {
         .taskName = "BATTERY",
@@ -133,6 +136,15 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .taskFunc = taskCalculateAltitude,
         .desiredPeriod = 1000000 / 40,
         .staticPriority = TASK_PRIORITY_MEDIUM,
+    },
+#endif
+
+#ifdef TRANSPONDER
+    [TASK_TRANSPONDER] = {
+        .taskName = "TRANSPONDER",
+        .taskFunc = taskTransponder,
+        .desiredPeriod = 1000000 / 250,         // 250 Hz
+        .staticPriority = TASK_PRIORITY_LOW,
     },
 #endif
 
