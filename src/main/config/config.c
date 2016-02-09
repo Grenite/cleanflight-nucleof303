@@ -19,7 +19,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "platform.h"
+#include <platform.h>
 
 #include "build_config.h"
 
@@ -37,6 +37,8 @@
 #include "drivers/pwm_rx.h"
 #include "drivers/serial.h"
 
+#include "io/rc_controls.h"
+
 #include "sensors/sensors.h"
 #include "sensors/gyro.h"
 #include "sensors/compass.h"
@@ -49,7 +51,6 @@
 #include "io/serial.h"
 #include "io/gimbal.h"
 #include "io/escservo.h"
-#include "io/rc_controls.h"
 #include "io/rc_curves.h"
 #include "io/ledstrip.h"
 #include "io/gps.h"
@@ -388,7 +389,7 @@ static void resetConf(void)
     masterConfig.version = EEPROM_CONF_VERSION;
     masterConfig.mixerMode = MIXER_QUADX;
     featureClearAll();
-#if defined(CJMCU) || defined(SPARKY) || defined(COLIBRI_RACE) || defined(MOTOLAB) || defined(SPRACINGF3MINI)
+#if defined(CJMCU) || defined(SPARKY) || defined(COLIBRI_RACE) || defined(MOTOLAB) || defined(SPRACINGF3MINI) || defined(LUX_RACE)
     featureSet(FEATURE_RX_PPM);
 #endif
 
