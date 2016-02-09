@@ -445,6 +445,7 @@ static const uint16_t airPWM[] = {
     0xFFFF
 };
 #endif
+
 #ifdef STM32F303RENUCLEO
 static const uint16_t multiPPM[] = {
     PWM1  | (MAP_TO_PPM_INPUT    << 8), // PPM input
@@ -786,13 +787,12 @@ pwmIOConfiguration_t *pwmInit(drv_pwm_config_t *init)
             if ((timerIndex == PWM15 || timerIndex == PWM16) && timerHardwarePtr->tim == TIM15)
                 type = MAP_TO_SERVO_OUTPUT;
 #endif
-<<<<<<< HEAD
+
 #if defined (STM32F303RENUCLEO)
             // remap PWM15+16 as servos
             if ((timerIndex == PWM15 || timerIndex == PWM16) && timerHardwarePtr->tim == TIM15)
                 type = MAP_TO_SERVO_OUTPUT;
 #endif
-=======
 
 #if defined(SPRACINGF3MINI)
             // remap PWM8+9 as servos
@@ -800,7 +800,6 @@ pwmIOConfiguration_t *pwmInit(drv_pwm_config_t *init)
                 type = MAP_TO_SERVO_OUTPUT;
 #endif
 
->>>>>>> 688931d5234a54d3d548e40c2ec4d0a54f8ed907
 #if defined(NAZE32PRO) || (defined(STM32F3DISCOVERY) && !defined(CHEBUZZF3))
             // remap PWM 5+6 or 9+10 as servos - softserial pin pairs require timer ports that use the same timer
             if (init->useSoftSerial) {

@@ -96,8 +96,8 @@
 #define UART2_RX_PINSOURCE  GPIO_PinSource3
 
 #ifndef UART3_GPIO
-#define UART3_TX_PIN        GPIO_Pin_10 // PB10 (AF7)
-#define UART3_RX_PIN        GPIO_Pin_11 // PB11 (AF7)
+#define UART3_TX_PIN        GPIO_Pin_10 // PC10 (AF7 mode), 5v max
+#define UART3_RX_PIN        GPIO_Pin_11 // PC11 (AF7 mode), 5v max
 #define UART3_GPIO_AF       GPIO_AF_7
 #define UART3_GPIO          GPIOC
 #define UART3_TX_PINSOURCE  GPIO_PinSource10
@@ -135,10 +135,10 @@
 //5V pins on spi2 are on GPIOF and GPIOA, changes to the bus_spi.c code are required to enable the spi2 5v pins
 //on two seperate GPIOs
 
-//Uncomment the following lines to enable the M25P16 spi flash memory
-//define M25P16_CS_GPIO          GPIOB //chip select pin, use any compatable pin
-//#define M25P16_CS_PIN           GPIO_Pin_12
-//#define M25P16_SPI_INSTANCE     SPI2 //spi1 or spi2
+//M25P16 spi flash memory
+#define M25P16_CS_GPIO          GPIOB //chip select pin, use any compatable pin
+#define M25P16_CS_PIN           GPIO_Pin_12
+#define M25P16_SPI_INSTANCE     SPI2 //spi1 or spi2
 
 #define USE_ADC
 #define BOARD_HAS_VOLTAGE_DIVIDER
@@ -173,6 +173,8 @@
 #define WS2811_TIMER_APB2_PERIPHERAL    RCC_APB2Periph_TIM1
 #define WS2811_DMA_CHANNEL              DMA1_Channel2
 #define WS2811_IRQ                      DMA1_Channel2_IRQn
+#define WS2811_DMA_TC_FLAG              DMA1_FLAG_TC2
+#define WS2811_DMA_HANDLER_IDENTIFER    DMA1_CH2_HANDLER
 
 #define BLACKBOX
 #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
