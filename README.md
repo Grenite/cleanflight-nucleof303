@@ -1,3 +1,5 @@
+This fork is an attempt to incorporate the stm32f303re nucelo dev board into cleanflight. The objective is to promote open hardware development and promote rapid development on cleanflight flight controllers. There is more work to come.
+Below is the original cleanflight readme.
 # Cleanflight
 
 ![Cleanflight](docs/assets/cleanflight/cleanflight-logo-light-wide-1-240px.jpg)
