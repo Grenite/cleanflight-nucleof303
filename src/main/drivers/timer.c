@@ -277,7 +277,7 @@ const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
 #define TIMER_AHB_PERIPHERALS (RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB)
 
 #endif
-#ifdef STM32F303RENUCLEO
+#if defined(STM32F303RENUCLEO)
 const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     { TIM3,  GPIOC, Pin_6,  TIM_Channel_1, TIM3_IRQn,               0, Mode_AF_PP, GPIO_PinSource6,  GPIO_AF_2}, // RC_CH1 - PC6  - *TIM3_CH1
     { TIM3,  GPIOC, Pin_7,  TIM_Channel_2, TIM3_IRQn,               0, Mode_AF_PP, GPIO_PinSource7,  GPIO_AF_2}, // RC_CH2 - PC7  - *TIM3_CH2,
@@ -288,25 +288,27 @@ const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     { TIM1,  GPIOA, Pin_10, TIM_Channel_3, TIM1_CC_IRQn,            0, Mode_AF_PP, GPIO_PinSource10, GPIO_AF_6}, // RC_CH7 - PA10 - *TIM1_CH3, USART1_RX
     { TIM1,  GPIOA, Pin_11, TIM_Channel_4, TIM1_CC_IRQn,            0, Mode_AF_PP, GPIO_PinSource11, GPIO_AF_11},// RC_CH8 - PA11  - *TIM1_CH4, TIM4_CH1, TIM1_CH1N,
 
-    { TIM2,  GPIOA, Pin_0,  TIM_Channel_1, TIM2_IRQn,     		    1, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_1},  // PWM1 - PA0/A0  - TIM2_CH1, *TIM8_BKIN, TIM8_ETR
-    { TIM2,  GPIOA, Pin_1,  TIM_Channel_2, TIM2_IRQn,			    1, Mode_AF_PP, GPIO_PinSource1,  GPIO_AF_1},  // PWM2 - PA1/A1  - TIM2_CH2, *TIM15_CH1N
-    { TIM3,  GPIOA, Pin_4,  TIM_Channel_2, TIM3_IRQn,               1, Mode_AF_PP, GPIO_PinSource4,  GPIO_AF_2},  // PWM3 - PA4/A2  - TIM3_CH2
-    { TIM3,  GPIOB, Pin_0,  TIM_Channel_3, TIM3_IRQn,               1, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_2},  // PWM4 - PB0/A3  - TIM3_CH3, *TIM8_CH2N, TIM1_CH2N
-    { TIM1,  GPIOC, Pin_1,  TIM_Channel_2, TIM1_CC_IRQn,            1, Mode_AF_PP, GPIO_PinSource1,  GPIO_AF_2},  // PWM5 - PC1/A4  - TIM1_CH2
-    { TIM1,  GPIOC, Pin_0,  TIM_Channel_1, TIM1_CC_IRQn,            1, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_2},  // PWM6 - PC0/A5   -TIM1_CH1
-    { TIM15, GPIOA, Pin_2,  TIM_Channel_1, TIM1_BRK_TIM15_IRQn,     1, Mode_AF_PP, GPIO_PinSource2,  GPIO_AF_9},  // PWM7 - PA2
-    { TIM15, GPIOA, Pin_3,  TIM_Channel_2, TIM1_BRK_TIM15_IRQn,     1, Mode_AF_PP, GPIO_PinSource3,  GPIO_AF_9},  // PWM8 - PA3
+    { TIM2,  GPIOA, Pin_0,  TIM_Channel_1, TIM2_IRQn,     		    0, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_1},  // PWM1 - PA0/A0  - TIM2_CH1, *TIM8_BKIN, TIM8_ETR
+    { TIM2,  GPIOA, Pin_1,  TIM_Channel_2, TIM2_IRQn,			    0, Mode_AF_PP, GPIO_PinSource1,  GPIO_AF_1},  // PWM2 - PA1/A1  - TIM2_CH2, *TIM15_CH1N
+    { TIM3,  GPIOA, Pin_4,  TIM_Channel_2, TIM3_IRQn,               0, Mode_AF_PP, GPIO_PinSource4,  GPIO_AF_2},  // PWM3 - PA4/A2  - TIM3_CH2
+    { TIM3,  GPIOB, Pin_0,  TIM_Channel_3, TIM3_IRQn,               0, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_2},  // PWM4 - PB0/A3  - TIM3_CH3, *TIM8_CH2N, TIM1_CH2N
+    { TIM1,  GPIOC, Pin_1,  TIM_Channel_2, TIM1_CC_IRQn,            0, Mode_AF_PP, GPIO_PinSource1,  GPIO_AF_2},  // PWM5 - PC1/A4  - TIM1_CH2
+    { TIM1,  GPIOC, Pin_0,  TIM_Channel_1, TIM1_CC_IRQn,            0, Mode_AF_PP, GPIO_PinSource0,  GPIO_AF_2},  // PWM6 - PC0/A5   -TIM1_CH1
+    { TIM15, GPIOA, Pin_2,  TIM_Channel_1, TIM1_BRK_TIM15_IRQn,     0, Mode_AF_PP, GPIO_PinSource2,  GPIO_AF_9},  // PWM7 - PA2
+    { TIM15, GPIOA, Pin_3,  TIM_Channel_2, TIM1_BRK_TIM15_IRQn,     0, Mode_AF_PP, GPIO_PinSource3,  GPIO_AF_9},  // PWM8 - PA3
 
-    { TIM1,  GPIOA, Pin_8,  TIM_Channel_1, TIM1_CC_IRQn,            1, Mode_AF_PP, GPIO_PinSource8,  GPIO_AF_6},  // GPIO_TIMER / LED_STRIP
+    { TIM1,  GPIOA, Pin_8,  TIM_Channel_1, TIM1_CC_IRQn,            0, Mode_AF_PP, GPIO_PinSource8,  GPIO_AF_6},  // GPIO_TIMER / LED_STRIP
 };
 
-#define USED_TIMERS  (TIM_N(1) | TIM_N(2) | TIM_N(3) | TIM_N(4) | TIM_N(15) | TIM_N(16) |TIM_N(17))
-
-#define TIMER_APB1_PERIPHERALS (RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3 | RCC_APB1Periph_TIM4)
-#define TIMER_APB2_PERIPHERALS (RCC_APB2Periph_TIM1 | RCC_APB2Periph_TIM15 | RCC_APB2Periph_TIM16 | RCC_APB2Periph_TIM17)
-#define TIMER_AHB_PERIPHERALS (RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB)
-
+#define USED_TIMERS  (TIM_N(1) | TIM_N(2) | TIM_N(3) | TIM_N(15))
+//#define USED_TIMERS  (TIM_N(2) | TIM_N(3) | TIM_N(15))
+//timer peripherals can be found ad stmewf30x_rcc.c
+#define TIMER_APB1_PERIPHERALS (RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3)
+#define TIMER_APB2_PERIPHERALS (RCC_APB2Periph_TIM1 | RCC_APB2Periph_TIM15)
+//#define TIMER_APB2_PERIPHERHALS (RCC_APB2Periph_TIM15)
+#define TIMER_AHB_PERIPHERALS (RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB | RCC_AHBPeriph_GPIOC)
 #endif
+
 #if defined(MOTOLAB)
 const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     { TIM3,  GPIOA, Pin_4,  TIM_Channel_2, TIM3_IRQn,               1, Mode_AF_PP, GPIO_PinSource4,  GPIO_AF_2}, // PWM1  - PA4  - *TIM3_CH2

@@ -26,6 +26,7 @@
  * GPIO_AF_[NUMBER 0-15] specifies the alternate function(s) a pin will be function as, if available
  */
 
+//pwm pinout can be found in Drivers/timer.c
 #define TARGET_BOARD_IDENTIFIER "STM32F303RENUCLEO"
 
 #define LED0_GPIO   GPIOA
@@ -88,13 +89,21 @@
 #define UART1_RX_PINSOURCE  GPIO_PinSource10
 #endif
 //by default USART2 is used by the ST-LINK Embedded debugger
-#define UART2_TX_PIN        GPIO_Pin_2 // PA2
+#define UART2_TX_PIN        GPIO_Pin_14 // PA14 / SWCLK
+#define UART2_RX_PIN        GPIO_Pin_15 // PA15
+#define UART2_GPIO          GPIOA
+#define UART2_GPIO_AF       GPIO_AF_7
+#define UART2_TX_PINSOURCE  GPIO_PinSource14
+#define UART2_RX_PINSOURCE  GPIO_PinSource15
+//USART2 can also be used on PA2 and PA3 instead, however solder jumpers must be changed
+//uncomment the following lines and comment the previous USART2 definitions to use PA2 and PA3 as USART2
+/*#define UART2_TX_PIN        GPIO_Pin_2 // PA2
 #define UART2_RX_PIN        GPIO_Pin_3 // PA3
 #define UART2_GPIO          GPIOA
 #define UART2_GPIO_AF       GPIO_AF_7
 #define UART2_TX_PINSOURCE  GPIO_PinSource2
 #define UART2_RX_PINSOURCE  GPIO_PinSource3
-
+*/
 #ifndef UART3_GPIO
 #define UART3_TX_PIN        GPIO_Pin_10 // PC10 (AF7 mode), 5v max
 #define UART3_RX_PIN        GPIO_Pin_11 // PC11 (AF7 mode), 5v max
@@ -104,10 +113,10 @@
 #define UART3_RX_PINSOURCE  GPIO_PinSource11
 #endif
 
-#define SOFTSERIAL_1_TIMER TIM3
+#define SOFTSERIAL_1_TIMER TIM1
 #define SOFTSERIAL_1_TIMER_RX_HARDWARE 4 // PWM 5
 #define SOFTSERIAL_1_TIMER_TX_HARDWARE 5 // PWM 6
-#define SOFTSERIAL_2_TIMER TIM3
+#define SOFTSERIAL_2_TIMER TIM15
 #define SOFTSERIAL_2_TIMER_RX_HARDWARE 6 // PWM 7
 #define SOFTSERIAL_2_TIMER_TX_HARDWARE 7 // PWM 8
 
